@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cube Root Calculator</title>
+  <style>
+    /* General styles */
+    .calculator-box__main {
+      background: #fff;
+      box-shadow: 0 3px 6px rgba(0,0,0,.3);
+      width: 100%;
+      border-radius: 0.6em;
+      padding: 2em;
+      box-sizing: border-box;
+      color: #000;
+    }
+
+     .calculator-box {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+     .calculator-operation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .calculator-operation__left,
+    .calculator-operation__right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+     .app-font.calculator-text.calculator-text--large {
+      font-size: 1.3em;
+      padding: 0 0.3em;
+      margin: 0;
+    }
+
+     .calculator-input {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      flex: 0 0 calc(33.33% - 10px); /* 33.33% width for each input field on larger screens */
+    }
+
+   .calculator-box__main input {
+     text-align: right;
+    background: #efeff5;
+    border: 0;
+    outline: 0;
+    border-radius: 0.4em;
+    font-size: 1.4em;
+    font-weight: 300;
+    padding: 0.6em;
+    width: 5em;
+    -moz-appearance: textfield;
+}
+
+  .calculator-operation__right {
+    text-align: end !important;
+}
+
+    .calculator-button {
+      padding: 10px 20px;
+      background-color: #000000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+     .calculator-button:hover {
+      background-color: #EFEFF5;
+    }
+
+         .calculator-button:focus {
+            outline: none;
+            background-color: #000000;
+            color: #FFFFFF;
+    }
+    .input-sign{
+    width: 3.3em;
+    padding: 6px 10px;
+}
+
+@media (max-width: 768px) {
+    .input-value{
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 400px) {
+    .input-value{
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 393px) {
+    .input-value{
+        margin-bottom: 25px;
+    }
+}
+  </style>
+</head>
+<body>
+  <div class="calculator-box">
+    <div class="calculator-box__main">
+      <div class="calculator-operation">
+        <div class="calculator-operation__left">
+          <div slot="left">
+            <div class="app-font calculator-text calculator-text--large">X=</div>
+          </div>
+          <div class="calculator-input">
+            <select class="input-sign">
+                <option value="1">+</option>
+                <option value="-1">-</option>
+            </select>
+            <input class="input-value" placeholder="Value" type="number" value="">
+          </div>
+          <div class="app-font calculator-text calculator-text--large">?</div>
+        </div>
+        <div class="calculator-operation__right">
+          <div slot="right">
+            <button class="calculator-button calculator-button-success" onclick="calculateCubeRoot()">Calculate</button>
+            <div>
+              <div class="app-font calculator-text calculator-text--small">(result)</div>
+            </div>
+            <div>
+              <div class="app-font calculator-text calculator-text--large">=</div>
+              <div class="calculator-input">
+                <input class="input-result" placeholder="Result" type="number" value="" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="calculator-box__history"></div>
+  </div>
+
+  <script>
+    function calculateCubeRoot() {
+      const sign = parseFloat(document.querySelector('.input-sign').value);
+      const value = parseFloat(document.querySelector('.input-value').value);
+      let result = 0;
+
+      if (!isNaN(value)) {
+        result = Math.cbrt(sign * value);
+      }
+
+      document.querySelector('.input-result').value = result.toFixed(4); // Rounded to 4 decimal places
+    }
+  </script>
+</body>
+</html>
